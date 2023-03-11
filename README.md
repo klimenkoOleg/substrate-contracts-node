@@ -47,6 +47,18 @@ and just execute `./substrate-contracts-node`.
 Follow the [official installation steps](https://docs.substrate.io/v3/getting-started/installation/)
 to set up all Substrate prerequisites.
 
+
+Build node using the command:
+
+```bash
+cargo build --release
+```
+
+Run node using the command:
+```bash
+./target/release/substrate-contracts-node --dev
+```
+
 Afterwards you can install this node via
 
 ```bash
