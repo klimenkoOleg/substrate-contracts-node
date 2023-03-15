@@ -69,8 +69,9 @@ cargo install contracts-node --git https://github.com/paritytech/substrate-contr
 
 To run a local dev node execute
 
+Run node using the command:
 ```bash
-substrate-contracts-node
+./target/release/substrate-contracts-node --dev
 ```
 
 A new chain in temporary directory will be created each time the command is executed. This is the
@@ -83,6 +84,52 @@ See our FAQ for more details:
 ## Connect with frontend
 
 Once the node template is running locally, you can connect to it with frontends like [Contracts UI](https://contracts-ui.substrate.io/#/?rpc=ws://127.0.0.1:9944) or [Polkadot-JS Apps](https://polkadot.js.org/apps/#/explorer?rpc=ws://localhost:9944) and interact with your chain.
+
+## Observability
+
+Substract exposes Prometheus endpoint out of the box, at localhost is available by url http://localhost:9615/metrics.
+If your node is up and running then the url to show you something like this:
+
+```
+# HELP substrate_block_height Block height info of the chain
+# TYPE substrate_block_height gauge
+substrate_block_height{status="best",chain="dev"} 8
+substrate_block_height{status="finalized",chain="dev"} 0
+substrate_block_height{status="sync_target",chain="dev"} 8
+# HELP substrate_block_verification_and_import_time Time taken to verify and import blocks
+# TYPE substrate_block_verification_and_import_time histogram
+substrate_block_verification_and_import_time_bucket{chain="dev",le="0.005"} 0
+substrate_block_verification_and_import_time_bucket{chain="dev",le="0.01"} 0
+substrate_block_verification_and_import_time_bucket{chain="dev",le="0.025"} 0
+substrate_block_verification_and_import_time_bucket{chain="dev",le="0.05"} 0
+substrate_block_verification_and_import_time_bucket{chain="dev",le="0.1"} 0
+substrate_block_verification_and_import_time_bucket{chain="dev",le="0.25"} 0
+substrate_block_verification_and_import_time_bucket{chain="dev",le="0.5"} 0
+substrate_block_verification_and_import_time_bucket{chain="dev",le="1"} 0
+substrate_block_verification_and_import_time_bucket{chain="dev",le="2.5"} 0
+substrate_block_verification_and_import_time_bucket{chain="dev",le="5"} 0
+substrate_block_verification_and_import_time_bucket{chain="dev",le="10"} 0
+substrate_block_verification_and_import_time_bucket{chain="dev",le="+Inf"} 0
+substrate_block_verification_and_import_time_sum{chain="dev"} 0
+substrate_block_verification_and_import_time_count{chain="dev"} 0
+# HELP substrate_build_info A metric with a constant '1' value labeled by name, version
+# TYPE substrate_build_info gauge
+substrate_build_info{name="loud-detail-0375",version="0.24.0-fe448511262",chain="dev"} 1
+# HELP substrate_database_cache_bytes RocksDB cache size in bytes
+# TYPE substrate_database_cache_bytes gauge
+substrate_database_cache_bytes{chain="dev"} 0
+# HELP substrate_issued_light_requests Number of light client requests that our node has issued.
+```
+
+### To setup Prometheus and Grafana locally:
+1. Setup Docker `https://docs.docker.com/get-docker/`
+2. Execute `./observability/create_network.sh` to create Docker local network for Grafana and Prometheus inter-communication.
+3. Execute `./observability/run_prometheus.sh` to start Docker container with Grafana.
+It will be available by `http://localhost:9090/`
+4. Execute `./observability/run_grafana.sh` to start Docker container with Grafana.
+It will be available by `http://localhost:9095/` , login\password: `admin\admin`.
+
+
 
 ## How to upgrade to new Polkadot release
 
