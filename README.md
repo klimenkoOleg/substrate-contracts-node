@@ -124,10 +124,11 @@ substrate_database_cache_bytes{chain="dev"} 0
 
 ### To setup Prometheus and Grafana locally:
 1. Setup Docker `https://docs.docker.com/get-docker/`
-2. Execute `./observability/create_network.sh` to create Docker local network for Grafana and Prometheus inter-communication.
-3. Execute `./observability/run_prometheus.sh` to start Docker container with Grafana.
+2. cd ./observability
+3. Execute `./create_network.sh` to create Docker local network for Grafana and Prometheus inter-communication.
+4. Execute `./run_prometheus.sh` to start Docker container with Grafana.
 It will be available by `http://localhost:9090/`
-4. Execute `./observability/run_grafana.sh` to start Docker container with Grafana.
+5. Execute `./run_grafana.sh` to start Docker container with Grafana.
 It will be available by `http://localhost:9095/` , login\password: `admin\admin`.
 
 
