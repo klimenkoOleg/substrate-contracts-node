@@ -130,6 +130,7 @@ substrate_database_cache_bytes{chain="dev"} 0
 It will be available by `http://localhost:9090/`
 5. Execute `./run_grafana.sh` to start Docker container with Grafana.
 It will be available by `http://localhost:9095/` , login\password: `admin\admin`.
+Import Grafana Dashboard for Substrate using this configuration (copy from Git and pastin into Grafane using import): https://raw.githubusercontent.com/klimenkoOleg/substrate-contracts-node/main/observability/substrate-node-template-metrics.json
 
 
 
